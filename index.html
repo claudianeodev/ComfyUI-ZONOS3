@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ComfyUI-ZONOS3 · Clone or design a voice in ComfyUI</title>
+<meta name="description" content="Zyphra's ZONOS3-Mini voice model in ComfyUI: clone a voice from a short clip, design a new one with 25 sliders, 27 built-in voices, 43 languages. By Promptus.">
+<style>
+  :root { --bg:#120b3a; --panel:#1d1456; --line:#2f2580; --text:#f3f0ff; --muted:#b9b2e6; --accent:#f8a51b; --accent2:#2ad1c9; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:radial-gradient(1200px 600px at 80% -10%,#3a1f8f 0%,var(--bg) 60%); color:var(--text); line-height:1.55; }
+  main { max-width:980px; margin:0 auto; padding:48px 24px 72px; }
+  .kicker { display:inline-block; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--line); border-radius:999px; padding:4px 12px; }
+  h1 { font-size:clamp(32px,5vw,52px); line-height:1.1; margin:18px 0 12px; }
+  h1 span { color:var(--accent); }
+  .lead { font-size:19px; color:var(--muted); max-width:720px; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; margin:28px 0 8px; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:10px; font-weight:600; text-decoration:none; }
+  .btn.primary { background:var(--accent); color:#1a1034; }
+  .btn.ghost { border:1px solid var(--line); color:var(--text); }
+  h2 { margin:52px 0 14px; font-size:24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .card h3 { margin:0 0 6px; font-size:17px; color:var(--accent); }
+  .card p { margin:0; color:var(--muted); font-size:15px; }
+  ol { padding-left:20px; color:var(--muted); }
+  ol li { margin:8px 0; }
+  pre { background:#0b0726; border:1px solid var(--line); border-radius:10px; padding:14px; overflow-x:auto; font-size:13.5px; color:#e6e1ff; }
+  code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+  .note { font-size:14px; color:var(--muted); }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); }
+  a { color:var(--accent2); }
+</style>
+</head>
+<body>
+<main>
+  <span class="kicker">ComfyUI node pack · by Promptus</span>
+  <h1>Clone or design a voice <span>on your own PC</span></h1>
+  <p class="lead">ComfyUI-ZONOS3 brings Zyphra's free, open ZONOS3-Mini voice model into ComfyUI. Clone a voice from a short clip, shape a brand new one with sliders, or pick one of 27 built-in voices, in 43 languages.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/claudianeodev/ComfyUI-ZONOS3">Get the node pack</a>
+    <a class="btn ghost" href="https://www.promptus.ai/download">Run it in Promptus</a>
+  </div>
+
+  <h2>Five nodes</h2>
+  <div class="grid">
+    <div class="card"><h3>ZONOS3 Server</h3><p>Connects to Zyphra's local server, and starts it for you when you give it the server's folder.</p></div>
+    <div class="card"><h3>ZONOS3 Voice</h3><p>One of 27 built-in voices, or a clone from any audio clip. Up to 60 seconds is used.</p></div>
+    <div class="card"><h3>ZONOS3 Voice Blend</h3><p>Morph smoothly between two built-in voices.</p></div>
+    <div class="card"><h3>ZONOS3 Voice Design</h3><p>25 sliders for who, texture, room, delivery and mood, plus 15 accents and 8 presets.</p></div>
+    <div class="card"><h3>ZONOS3 Text to Speech</h3><p>Text in, standard ComfyUI audio out, with a quality guard that retakes skipped words.</p></div>
+  </div>
+
+  <h2>Two ready-made templates</h2>
+  <div class="grid">
+    <div class="card"><h3>Clone Your Voice</h3><p>Load 10–30 seconds of your own voice, type a script, press Run.</p></div>
+    <div class="card"><h3>Design a Voice</h3><p>Start from a built-in voice or a preset and move the sliders.</p></div>
+  </div>
+
+  <h2>Why a server?</h2>
+  <p class="note">ZONOS3-Mini runs in Zyphra's own local server rather than inside ComfyUI. It pins its own CUDA kernels and audio libraries, and loading those into ComfyUI would break other node packs. Zyphra's servers for Windows, Linux and Mac all speak the same API, so one node pack works everywhere.</p>
+
+  <h2>Get started</h2>
+  <ol>
+    <li>Clone this repo into <code>ComfyUI/custom_nodes</code> and restart ComfyUI.</li>
+    <li>Build Zyphra's ggml server once and download the model (about 1.2 GB). The <a href="https://github.com/claudianeodev/ComfyUI-ZONOS3#2-the-zonos3-server-and-model">README</a> has the exact commands.</li>
+    <li>On <b>ZONOS3 Server</b>, set <code>zonos3_folder</code> to the ZONOS3-Mini folder. Open a template and press Run.</li>
+  </ol>
+<pre><code>cd ComfyUI/custom_nodes
+git clone https://github.com/claudianeodev/ComfyUI-ZONOS3.git</code></pre>
+
+  <h2>Good to know</h2>
+  <div class="grid">
+    <div class="card"><h3>Best clips</h3><p>10–30 seconds of one person speaking clearly, no music.</p></div>
+    <div class="card"><h3>Go easy on stacking</h3><p>Liveliness, Happy and Chatty together raise the pitch a lot. A little goes a long way.</p></div>
+    <div class="card"><h3>Consent</h3><p>Clone your own voice, or voices you have written permission to use.</p></div>
+  </div>
+
+  <footer>
+    Node pack: MIT, by <a href="https://www.promptus.ai">Promptus</a>. ZONOS3-Mini model and runtime by <a href="https://huggingface.co/Zyphra/ZONOS3-Mini">Zyphra</a> (weights Apache 2.0, runtime MIT), not included here.
+  </footer>
+</main>
+</body>
+</html>

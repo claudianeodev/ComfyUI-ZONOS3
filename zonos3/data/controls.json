@@ -1,0 +1,820 @@
+{
+ "source": "Zyphra ZONOS3-Mini assets/steering/studio_bundle_mect60k_x10.json (MIT)",
+ "controls": [
+  {
+   "id": "gender",
+   "group": "who",
+   "label": "Gender",
+   "type": "bipolar",
+   "poles": [
+    "masculine",
+    "feminine"
+   ],
+   "map": {
+    "-": {
+     "identity.gender": -1
+    },
+    "+": {
+     "identity.gender": 1
+    }
+   },
+   "range": [
+    -3,
+    3
+   ],
+   "safe": [
+    -2,
+    2
+   ],
+   "effect": "\u00b12 flips the gender of every release voice; identity drops to ~0.5"
+  },
+  {
+   "id": "age",
+   "group": "who",
+   "label": "Age",
+   "type": "bipolar",
+   "poles": [
+    "younger",
+    "older"
+   ],
+   "map": {
+    "-": {
+     "identity.age": -1
+    },
+    "+": {
+     "identity.age": 1
+    }
+   },
+   "range": [
+    -3,
+    3
+   ],
+   "safe": [
+    -2,
+    2
+   ],
+   "effect": "\u00b12 moves apparent age by 10-30 years; at \u22123 male voices start to read female"
+  },
+  {
+   "id": "pitch",
+   "group": "who",
+   "label": "Pitch",
+   "type": "bipolar",
+   "poles": [
+    "lower",
+    "higher"
+   ],
+   "map": {
+    "-": {
+     "pitch.pitch": -1
+    },
+    "+": {
+     "pitch.pitch": 1
+    }
+   },
+   "range": [
+    -3,
+    3
+   ],
+   "safe": [
+    -2,
+    2
+   ],
+   "effect": "\u00b12: about \u221220 / +40 Hz at the same gender; +3 can flip a female voice"
+  },
+  {
+   "id": "range",
+   "group": "who",
+   "label": "Intonation",
+   "type": "bipolar",
+   "poles": [
+    "monotone",
+    "varied"
+   ],
+   "map": {
+    "-": {
+     "pitch.pitch_range": -1
+    },
+    "+": {
+     "pitch.pitch_range": 1
+    }
+   },
+   "range": [
+    -3,
+    3
+   ],
+   "safe": [
+    -2,
+    2
+   ],
+   "effect": "\u00b12: F0 spread 2.9 \u2192 2.1 / 4.4 semitones at the same pitch level"
+  },
+  {
+   "id": "deep",
+   "group": "texture",
+   "label": "Deep",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.deep": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: deeper and huskier, F0 \u221217 Hz"
+  },
+  {
+   "id": "bright",
+   "group": "texture",
+   "label": "Bright",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.shrill": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: shriller, F0 +40 Hz"
+  },
+  {
+   "id": "husky",
+   "group": "texture",
+   "label": "Husky",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.husky": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: husky 0.18 \u2192 0.33"
+  },
+  {
+   "id": "raspy",
+   "group": "texture",
+   "label": "Raspy",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.raspy": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: raspy 0.06 \u2192 0.34; changes the voice the most"
+  },
+  {
+   "id": "soft",
+   "group": "texture",
+   "label": "Soft",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.soft": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: softer and 7.5 dB quieter"
+  },
+  {
+   "id": "authority",
+   "group": "texture",
+   "label": "Authority",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "texture.authoritative": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: authoritative 0.54 \u2192 0.78"
+  },
+  {
+   "id": "room",
+   "group": "room",
+   "label": "Room",
+   "type": "bipolar",
+   "poles": [
+    "phone",
+    "studio"
+   ],
+   "map": {
+    "-": {
+     "room.clean": -1
+    },
+    "+": {
+     "room.clean": 1
+    }
+   },
+   "range": [
+    -4,
+    6
+   ],
+   "safe": [
+    -2,
+    4
+   ],
+   "effect": "speech over the noise floor 40 dB \u2192 28 (\u22122) / 58 (+4)"
+  },
+  {
+   "id": "projection",
+   "group": "delivery",
+   "label": "Projection",
+   "type": "bipolar",
+   "poles": [
+    "whisper",
+    "loud"
+   ],
+   "map": {
+    "-": {
+     "delivery.whisper": 1
+    },
+    "+": {
+     "delivery.loud": 1
+    }
+   },
+   "range": [
+    -3,
+    4
+   ],
+   "safe": [
+    -1.5,
+    2
+   ],
+   "effect": "whisper \u00d72 halves voicing (7% WER); loud \u00d72 +7 dB, \u00d74 +16 dB"
+  },
+  {
+   "id": "pace",
+   "group": "delivery",
+   "label": "Pace",
+   "type": "bipolar",
+   "poles": [
+    "slower",
+    "faster"
+   ],
+   "map": {
+    "-": {
+     "delivery.tempo": -1
+    },
+    "+": {
+     "delivery.tempo": 1
+    }
+   },
+   "range": [
+    -3,
+    3
+   ],
+   "safe": [
+    -2,
+    2
+   ],
+   "effect": "\u22121: \u00d71.45 longer, +2: \u00d70.63; fast is also louder and higher"
+  },
+  {
+   "id": "chatty",
+   "group": "delivery",
+   "label": "Read \u2194 chatty",
+   "type": "bipolar",
+   "poles": [
+    "read",
+    "chatty"
+   ],
+   "map": {
+    "-": {
+     "delivery.conversational": -1
+    },
+    "+": {
+     "delivery.conversational": 1
+    }
+   },
+   "range": [
+    -5,
+    5
+   ],
+   "safe": [
+    -4,
+    4
+   ],
+   "effect": "+4: spontaneous (hesitation 0.10 \u2192 0.26, less enunciated); \u22124: careful reading"
+  },
+  {
+   "id": "hesitant",
+   "group": "delivery",
+   "label": "Hesitation",
+   "type": "bipolar",
+   "poles": [
+    "fluent",
+    "hesitant"
+   ],
+   "map": {
+    "-": {
+     "disfluency.disfluent": -1
+    },
+    "+": {
+     "disfluency.disfluent": 1
+    }
+   },
+   "range": [
+    -8,
+    20
+   ],
+   "safe": [
+    -8,
+    8
+   ],
+   "effect": "+8: pauses and blocks (0.10 \u2192 0.21), \u00d71.3 longer; +16 drops words"
+  },
+  {
+   "id": "lively",
+   "group": "delivery",
+   "label": "Liveliness",
+   "type": "bipolar",
+   "poles": [
+    "flat",
+    "lively"
+   ],
+   "map": {
+    "-": {
+     "expressive.expressive": -1
+    },
+    "+": {
+     "expressive.expressive": 1
+    }
+   },
+   "range": [
+    -16,
+    16
+   ],
+   "safe": [
+    -8,
+    8
+   ],
+   "effect": "+8: F0 spread 2.9 \u2192 4.3 st, higher and slower"
+  },
+  {
+   "id": "emphasis",
+   "group": "delivery",
+   "label": "Emphasis",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emphasis_nv_nodur.emphasis": 4.0,
+     "mood.arousal": 1.0
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    6
+   ],
+   "effect": "\u00d74.5 on one word: +6.0 st F0 peak, +65 ms, +1.6 dB; the most prominent word of the line 2 \u2192 36% (middle / final words); the word after +0.5 dB, +2.2 st"
+  },
+  {
+   "id": "valence",
+   "group": "mood",
+   "label": "Valence",
+   "type": "bipolar",
+   "poles": [
+    "negative",
+    "positive"
+   ],
+   "map": {
+    "-": {
+     "mood.valence": -1
+    },
+    "+": {
+     "mood.valence": 1
+    }
+   },
+   "range": [
+    -6,
+    6
+   ],
+   "safe": [
+    -4,
+    4
+   ],
+   "effect": "seed dose 4 (emotion axes, L9.attn)"
+  },
+  {
+   "id": "arousal",
+   "group": "mood",
+   "label": "Arousal",
+   "type": "bipolar",
+   "poles": [
+    "calm",
+    "excited"
+   ],
+   "map": {
+    "-": {
+     "mood.arousal": -1
+    },
+    "+": {
+     "mood.arousal": 1
+    }
+   },
+   "range": [
+    -6,
+    6
+   ],
+   "safe": [
+    -4,
+    4
+   ],
+   "effect": "seed dose 4 (emotion axes, L9.attn)"
+  },
+  {
+   "id": "angry",
+   "group": "mood",
+   "label": "Angry",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.angry": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: heard as angry on 17% of renders (from 0%; MSP-Podcast); more aroused (+0.35 MSP), WER 3.6%"
+  },
+  {
+   "id": "happy",
+   "group": "mood",
+   "label": "Happy",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.happy": 1
+    }
+   },
+   "range": [
+    0,
+    6
+   ],
+   "safe": [
+    0,
+    4
+   ],
+   "effect": "\u00d74: heard as happy on 62 / 58% of renders (from 21 / 15%; emotion2vec / MSP-Podcast); more aroused (+0.17 MSP), WER 2.5%"
+  },
+  {
+   "id": "sad",
+   "group": "mood",
+   "label": "Sad",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.sad": 1
+    }
+   },
+   "range": [
+    0,
+    8
+   ],
+   "safe": [
+    0,
+    6
+   ],
+   "effect": "\u00d76: heard as sad on 29 / 12% of renders (from 2 / 0%; MSP-Podcast / emotion2vec); less aroused (\u22120.15 MSP), WER 2.1%"
+  },
+  {
+   "id": "calm",
+   "group": "mood",
+   "label": "Calm",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.serene": 1
+    }
+   },
+   "range": [
+    0,
+    8
+   ],
+   "safe": [
+    0,
+    6
+   ],
+   "effect": "\u00d74: heard as calm on 94% of renders (from 77%; ParaSpeechCLAP); less aroused (\u22120.14 MSP), WER 0.9%"
+  },
+  {
+   "id": "scared",
+   "group": "mood",
+   "label": "Scared",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.scared": 1
+    }
+   },
+   "range": [
+    0,
+    14
+   ],
+   "safe": [
+    0,
+    12
+   ],
+   "effect": "\u00d712: heard as fearful on 8% of renders (from 0%; emotion2vec); more aroused (+0.11 MSP), WER 1.5%"
+  },
+  {
+   "id": "confused",
+   "group": "mood",
+   "label": "Confused",
+   "type": "unipolar",
+   "map": {
+    "+": {
+     "emotions.confused": 1
+    }
+   },
+   "range": [
+    0,
+    4
+   ],
+   "safe": [
+    0,
+    3
+   ],
+   "effect": "\u00d73: confused ranks 19 \u2192 10 of 21 styles (ParaSpeechCLAP); less aroused (\u22120.03 MSP), WER 3.4%"
+  }
+ ],
+ "accents": [
+  {
+   "id": "american",
+   "label": "North America",
+   "map": {
+    "accents_en.american": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "british",
+   "label": "England",
+   "map": {
+    "accents_en.british": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "scottish",
+   "label": "Scotland",
+   "map": {
+    "accents_en.scottish": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "irish",
+   "label": "Ireland",
+   "map": {
+    "accents_en.irish": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "welsh",
+   "label": "Wales",
+   "map": {
+    "accents_en.welsh": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "australian",
+   "label": "Australia",
+   "map": {
+    "accents_en.australian": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "indian",
+   "label": "India",
+   "map": {
+    "accents_en.indian": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "hin",
+   "label": "Hindi",
+   "map": {
+    "accents_l1.hin": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "spa",
+   "label": "Spanish",
+   "map": {
+    "accents_l1.spa": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "fra",
+   "label": "French",
+   "map": {
+    "accents_l1.fra": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "por",
+   "label": "Portuguese",
+   "map": {
+    "accents_l1.por": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "deu",
+   "label": "German",
+   "map": {
+    "accents_l1.deu": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "vie",
+   "label": "Vietnamese",
+   "map": {
+    "accents_l1.vie": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "pol",
+   "label": "Polish",
+   "map": {
+    "accents_l1.pol": 1
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  },
+  {
+   "id": "mandarin",
+   "label": "Mandarin",
+   "map": {
+    "mandarin.cmn": 1,
+    "mandarin_hidden.cmn": 0.3333333333333333
+   },
+   "safe": [
+    0,
+    1.5
+   ]
+  }
+ ],
+ "presets": {
+  "BBC newsreader": {
+   "accent:british": 1.5,
+   "authority": 3,
+   "room": 2
+  },
+  "Elderly Scottish narrator": {
+   "age": 1.5,
+   "accent:scottish": 1.5,
+   "deep": 2,
+   "range": -1
+  },
+  "Young Australian": {
+   "age": -1.5,
+   "accent:australian": 1.5,
+   "range": 1
+  },
+  "Gravelly old man": {
+   "gender": -1,
+   "age": 2,
+   "raspy": 3,
+   "deep": 2
+  },
+  "Soft-spoken Irish woman": {
+   "gender": 1,
+   "accent:irish": 1.5,
+   "soft": 3
+  },
+  "Indian English caller": {
+   "accent:indian": 1.5,
+   "room": -2
+  },
+  "Chatty podcaster": {
+   "chatty": 3,
+   "room": 1,
+   "lively": 4
+  },
+  "Late-night radio": {
+   "deep": 2,
+   "room": 3,
+   "pace": -0.8,
+   "projection": -0.6
+  }
+ },
+ "steer_release": {
+  "onset_seconds": 4.0,
+  "ramp_seconds": 1.0,
+  "hold": 0.35,
+  "exempt": [
+   "delivery.tempo",
+   "delivery.whisper"
+  ]
+ },
+ "raw_sets": [
+  "identity",
+  "pitch",
+  "accents_en",
+  "accents_l1",
+  "mandarin",
+  "texture",
+  "room"
+ ]
+}

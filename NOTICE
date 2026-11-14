@@ -1,0 +1,8 @@
+ComfyUI-ZONOS3 by Promptus AI Limited (MIT, see LICENSE).
+
+zonos3/data/controls.json, languages.json and voices.json are derived from Zyphra's ZONOS3-Mini runtime
+(https://github.com/Zyphra/ZONOS3-Mini): the studio steering bundle UI spec, the language registry and the default
+voice list. Copyright (c) 2026 Zyphra, Inc., MIT License.
+
+The ZONOS3-Mini model weights (https://huggingface.co/Zyphra/ZONOS3-Mini) are Zyphra's, under Apache 2.0. This pack
+does not include or redistribute them.

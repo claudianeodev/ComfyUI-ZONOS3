@@ -1,0 +1,222 @@
+[
+ {
+  "code": "en_us",
+  "label": "US English",
+  "speech": "en"
+ },
+ {
+  "code": "en_gb",
+  "label": "UK English",
+  "speech": "en"
+ },
+ {
+  "code": "fr_fr",
+  "label": "French",
+  "speech": "fr"
+ },
+ {
+  "code": "de",
+  "label": "German",
+  "speech": "de"
+ },
+ {
+  "code": "es",
+  "label": "Spanish",
+  "speech": "es"
+ },
+ {
+  "code": "it",
+  "label": "Italian",
+  "speech": "it"
+ },
+ {
+  "code": "pt_br",
+  "label": "Portuguese",
+  "speech": "pt"
+ },
+ {
+  "code": "ja",
+  "label": "Japanese",
+  "speech": "ja"
+ },
+ {
+  "code": "cmn",
+  "label": "Mandarin",
+  "speech": "zh"
+ },
+ {
+  "code": "ko",
+  "label": "Korean",
+  "speech": "ko"
+ },
+ {
+  "code": "ar",
+  "label": "Arabic",
+  "speech": "ar"
+ },
+ {
+  "code": "bn",
+  "label": "Bengali",
+  "speech": "bn"
+ },
+ {
+  "code": "bg",
+  "label": "Bulgarian",
+  "speech": "bg"
+ },
+ {
+  "code": "cs",
+  "label": "Czech",
+  "speech": "cs"
+ },
+ {
+  "code": "da",
+  "label": "Danish",
+  "speech": "da"
+ },
+ {
+  "code": "nl",
+  "label": "Dutch",
+  "speech": "nl"
+ },
+ {
+  "code": "fi",
+  "label": "Finnish",
+  "speech": "fi"
+ },
+ {
+  "code": "ka",
+  "label": "Georgian",
+  "speech": "ka"
+ },
+ {
+  "code": "el",
+  "label": "Greek",
+  "speech": "el"
+ },
+ {
+  "code": "gu",
+  "label": "Gujarati",
+  "speech": "gu"
+ },
+ {
+  "code": "he",
+  "label": "Hebrew",
+  "speech": "he"
+ },
+ {
+  "code": "hi",
+  "label": "Hindi",
+  "speech": "hi"
+ },
+ {
+  "code": "hu",
+  "label": "Hungarian",
+  "speech": "hu"
+ },
+ {
+  "code": "id",
+  "label": "Indonesian",
+  "speech": "id"
+ },
+ {
+  "code": "kn",
+  "label": "Kannada",
+  "speech": "kn"
+ },
+ {
+  "code": "ms",
+  "label": "Malay",
+  "speech": "ms"
+ },
+ {
+  "code": "ml",
+  "label": "Malayalam",
+  "speech": "ml"
+ },
+ {
+  "code": "mr",
+  "label": "Marathi",
+  "speech": "mr"
+ },
+ {
+  "code": "no",
+  "label": "Norwegian",
+  "speech": "no"
+ },
+ {
+  "code": "or",
+  "label": "Odia",
+  "speech": "or"
+ },
+ {
+  "code": "pl",
+  "label": "Polish",
+  "speech": "pl"
+ },
+ {
+  "code": "pa",
+  "label": "Punjabi",
+  "speech": "pa"
+ },
+ {
+  "code": "ro",
+  "label": "Romanian",
+  "speech": "ro"
+ },
+ {
+  "code": "ru",
+  "label": "Russian",
+  "speech": "ru"
+ },
+ {
+  "code": "sk",
+  "label": "Slovak",
+  "speech": "sk"
+ },
+ {
+  "code": "sv",
+  "label": "Swedish",
+  "speech": "sv"
+ },
+ {
+  "code": "tl",
+  "label": "Tagalog",
+  "speech": "tl"
+ },
+ {
+  "code": "ta",
+  "label": "Tamil",
+  "speech": "ta"
+ },
+ {
+  "code": "te",
+  "label": "Telugu",
+  "speech": "te"
+ },
+ {
+  "code": "th",
+  "label": "Thai",
+  "speech": "th"
+ },
+ {
+  "code": "tr",
+  "label": "Turkish",
+  "speech": "tr"
+ },
+ {
+  "code": "uk",
+  "label": "Ukrainian",
+  "speech": "uk"
+ },
+ {
+  "code": "ur",
+  "label": "Urdu",
+  "speech": "ur"
+ },
+ {
+  "code": "vi",
+  "label": "Vietnamese",
+  "speech": "vi"
+ }
+]
