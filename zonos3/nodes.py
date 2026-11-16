@@ -15,7 +15,8 @@ import numpy as np
 import torch
 
 from .client import Zonos3Client, Zonos3Error
-from .launcher import ensure_server
+from . import installer
+from .launcher import ensure_server, restart_server
 
 DATA = Path(__file__).parent / "data"
 SPEC = json.loads((DATA / "controls.json").read_text(encoding="utf-8"))
@@ -90,8 +91,8 @@ class Zonos3Server:
             "required": {
                 "server_url": ("STRING", {"default": "http://127.0.0.1:1919"}),
                 "zonos3_folder": ("STRING", {"default": "", "tooltip":
-                    "Folder with zonos3-server.exe (a ZONOS3 release, or the ZONOS3-Mini checkout built with CMake). "
-                    "Leave empty if you start the server yourself."}),
+                    "Leave empty: on the first run ZONOS3 sets itself up in ComfyUI/models/zonos3 (about 1.7 GB). "
+                    "Or give a folder with your own zonos3-server.exe and model."}),
                 "model_folder": ("STRING", {"default": "", "tooltip":
                     "Folder with backbone-ptq.gguf and its companions. Empty = look in zonos3_folder (models, gguf)."}),
                 "device": (["gpu", "cpu"], {"default": "gpu"}),
@@ -100,6 +101,8 @@ class Zonos3Server:
             },
             "optional": {
                 "access_token": ("STRING", {"default": ""}),
+                "auto_setup": ("BOOLEAN", {"default": True, "tooltip":
+                    "Download and start the ZONOS3 server and model automatically when they're missing."}),
             },
         }
 
@@ -107,19 +110,39 @@ class Zonos3Server:
     RETURN_NAMES = ("server",)
     FUNCTION = "connect"
     CATEGORY = CATEGORY
-    DESCRIPTION = "Connects to the local ZONOS3 server, and starts it if it isn't running and you gave its folder."
+    DESCRIPTION = ("Connects to the local ZONOS3 server and starts it. On the first run it downloads the server and "
+                   "the model by itself (Windows + NVIDIA).")
 
     @classmethod
     def IS_CHANGED(cls, **kwargs):
         return float("nan")  # re-check the server every run
 
-    def connect(self, server_url, zonos3_folder, model_folder, device, max_seconds, access_token=""):
-        client = ensure_server(server_url, zonos3_folder, model_folder, device, int(max_seconds * 15), access_token)
-        return ({"url": client.url, "token": client.token},)
+    def connect(self, server_url, zonos3_folder, model_folder, device, max_seconds, auto_setup=True, access_token=""):
+        client = ensure_server(server_url, zonos3_folder, model_folder, device, int(max_seconds * 15), access_token,
+                               auto_setup=auto_setup)
+        root = zonos3_folder.strip() or (str(installer.default_root()) if auto_setup else "")
+        return ({"url": client.url, "token": client.token, "root": root, "model_folder": model_folder,
+                 "device": device, "max_frames": int(max_seconds * 15), "auto_setup": auto_setup},)
 
 
 def _client(server: dict) -> Zonos3Client:
     return Zonos3Client(server["url"], server.get("token", ""))
+
+
+def _ensure_reference_encoders(server: dict) -> None:
+    """Raw-clip cloning needs zac-encoder + ssl-teacher. Fetch them once and restart the server so it loads them."""
+    root = server.get("root") or ""
+    if not root:
+        return  # a server the user runs themselves: it reports clearly if the encoders are missing
+    rp = Path(root.strip().strip('"'))
+    if installer.has_reference_files(rp):
+        return
+    if not server.get("auto_setup", True):
+        raise Zonos3Error("Raw-clip cloning needs two more model files (about 5.6 GB): gguf/zac-encoder.gguf and "
+                          f"gguf/ssl-teacher.gguf in {rp}. Turn on auto_setup, or pick voice profile.")
+    installer.install_reference_files(rp)
+    restart_server(server["url"], root, server.get("model_folder", ""), server.get("device", "gpu"),
+                   server.get("max_frames", 9000), server.get("token", ""))
 
 
 # ---------------------------------------------------------------------------------------------------------- Voice
@@ -151,6 +174,8 @@ class Zonos3Voice:
         if voice == CLONE:
             if clone_audio is None:
                 raise Zonos3Error("Connect a clip to clone_audio, or pick a built-in voice.")
+            if mode == "reference":
+                _ensure_reference_encoders(server)
             b64, seconds = _audio_to_wav_b64(clone_audio)
             if seconds < 5:
                 print(f"[ZONOS3] the clone clip is only {seconds:.1f} s; 10–30 s clones much better.")

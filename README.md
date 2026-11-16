@@ -13,7 +13,7 @@ Project page: https://claudianeodev.github.io/ComfyUI-ZONOS3/
 
 | Node | What it does |
 |---|---|
-| **ZONOS3 Server** | Connects to the local ZONOS3 server, and starts it for you if you give it the server's folder |
+| **ZONOS3 Server** | Connects to the local ZONOS3 server; on Windows with NVIDIA it installs and starts it for you |
 | **ZONOS3 Voice** | One of 27 built-in voices, or a clone from any audio clip (up to 60 s is used) |
 | **ZONOS3 Voice Blend** | Morphs between two built-in voices |
 | **ZONOS3 Voice Design** | 25 sliders (gender, age, pitch, intonation, texture, room, whisper or loud, pace, chatty, happy, sad, calm and more), 15 accents and 8 presets |
@@ -26,50 +26,42 @@ delivery and mood after about 4 seconds, so long reads don't drift louder and hi
 
 ## Install
 
-### 1. The node pack
+### Promptus (one click)
+
+In Promptus, open **CosyTemplates**, search for **ZONOS3**, download **ZONOS3 Clone Your Voice** or **ZONOS3 Design a
+Voice**, and press Run. The first Run sets everything up by itself (Windows with an NVIDIA GPU).
+
+### ComfyUI
+
+Either clone the pack:
 
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/claudianeodev/ComfyUI-ZONOS3.git
 ```
 
-Restart ComfyUI. The pack needs nothing beyond ComfyUI itself.
+or drop the single file [`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/download/server-v1/zonos3_comfyui.py)
+into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
 
-### 2. The ZONOS3 server and model
+### What the first Run does (Windows + NVIDIA)
 
-Zyphra doesn't publish prebuilt Windows binaries yet, so build the ggml server once (Git, CMake, Visual Studio 2022
-Build Tools with C++, Rust, and the CUDA Toolkit 12.8+ for an NVIDIA GPU):
+With `auto_setup` on (the default), the **ZONOS3 Server** node sets itself up in `ComfyUI/models/zonos3`, one folder you
+can delete to remove everything:
 
-```bat
-git clone --recurse-submodules https://github.com/Zyphra/ZONOS3-Mini.git zonos3
-cd zonos3\servers\ggml
-cmake -B build-cuda -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release
-cmake --build build-cuda --config Release -j
-```
+1. downloads the prebuilt ZONOS3 server for Windows (about 790 MB, from this repo's
+   [server-v1 release](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/tag/server-v1); CUDA 12.8, RTX 20
+   to 50 series, ffmpeg included) and checks its SHA-256;
+2. downloads the model and the 27 voices from [Zyphra/ZONOS3-Mini](https://huggingface.co/Zyphra/ZONOS3-Mini)
+   (about 1.2 GB);
+3. starts the server and keeps it running while ComfyUI is open. The log is `models/zonos3/gguf/zonos3-server.log`.
 
-No NVIDIA GPU? Leave out `-DGGML_CUDA=ON` and use `build` instead of `build-cuda`. The CPU build runs about 8–10 times
-faster than real time.
+The **raw clip** clone method needs two more files (about 5.6 GB). They download the first time you pick it, and the
+server restarts to load them.
 
-Download the model files (about 1.2 GB) into `zonos3\servers\ggml`:
+### Mac, Linux, or your own server
 
-```bat
-hf download Zyphra/ZONOS3-Mini gguf/backbone-ptq.gguf gguf/zac-keep2.gguf gguf/spk-encoder.gguf gguf/steer.gguf --local-dir .
-hf download Zyphra/ZONOS3-Mini --include "gguf/voices/*" --local-dir .
-```
-
-The "raw clip" clone method also needs `gguf/zac-encoder.gguf` and `gguf/ssl-teacher.gguf` (5.6 GB). The default
-"voice profile" method doesn't.
-
-You also need `ffmpeg` on your PATH for cloning from a clip.
-
-### 3. Point the Server node at it
-
-On **ZONOS3 Server**, set `zonos3_folder` to the `zonos3` checkout. The node finds `zonos3-server.exe`, the model in
-`servers\ggml\gguf`, the 27 voices and the quality-guard files, starts the server and keeps it running while ComfyUI
-is open. The server log is `gguf\zonos3-server.log`.
-
-Already running the server yourself (for example `start-zonos3.bat`, or the MLX server on a Mac)? Leave
-`zonos3_folder` empty and set `server_url`.
+Auto-setup is Windows-only for now. Run Zyphra's server yourself (see the
+[ZONOS3-Mini repo](https://github.com/Zyphra/ZONOS3-Mini)), leave `zonos3_folder` empty, and set `server_url`.
 
 ## Good to know
 
@@ -77,11 +69,9 @@ Already running the server yourself (for example `start-zonos3.bat`, or the MLX 
 - **Voice profile vs raw clip:** voice profile is steadier and works with every slider. Raw clip can sound closer;
   the Who, Texture, Room and Accent sliders switch it to a voice profile.
 - **Mood and delivery** are a nudge, not a guarantee. Try a few seeds.
-- **Stacking:** Liveliness, Happy and Chatty each raise the pitch, and together they add up. In our test, chatty 2 +
-  lively 3 + happy 2 took a deep announcer voice from about 115 Hz to about 225 Hz. Chatty 1.5 + happy 1 kept it near
-  140 Hz.
-- **Consent:** clone your own voice, or voices you have written permission to use. Zyphra's acceptable use policy
-  bans impersonation and deepfakes.
+- **Stacking:** Liveliness, Happy and Chatty each raise the pitch, and together they add up. In our tests, all three at
+  their maximum took Thaddeus from about 97 Hz to about 394 Hz; chatty 1.5 + happy 1 kept him near 111 Hz.
+- **Consent:** only clone your own voice, or voices you have permission to use.
 
 ## Licence
 

@@ -1,5 +1,5 @@
 {
- "id": "f2ff1c2b-c6f2-457f-8e74-9a4c03397d47",
+ "id": "2d799cf7-ae10-49c7-8ae7-030f5b0c4d1a",
  "revision": 0,
  "last_node_id": 6,
  "last_link_id": 5,
@@ -23,7 +23,7 @@
    "title": "How to use",
    "properties": {},
    "widgets_values": [
-    "## Design a Voice \u2014 ZONOS3-Mini\n\n1. **First time:** set `zonos3_folder` on **ZONOS3 Server** to the folder with `zonos3-server.exe`, and `model_folder` to the folder with `backbone-ptq.gguf`. The server then starts by itself. Already running it yourself? Leave both empty.\n2. Pick a base voice in **ZONOS3 Voice**, or try a **preset** in Voice Design.\n3. Move the sliders: **Who** (gender, age, pitch, intonation), **Texture**, **Room**, **Delivery** and **Mood**. They stop where Zyphra measured the voice still sounds like the same person.\n4. Press **Run**.\n\n**Tips**\n- Mood and delivery are a nudge, not a guarantee: try two or three seeds.\n- Go easy when stacking Delivery and Mood: Liveliness, Happy and Chatty together raise the pitch a lot, so a deep voice can end up sounding like someone else.\n- *steer_hold* relaxes mood and delivery after ~4 seconds so long reads don't drift louder. Set 1 to keep them constant.\n- Want a cross between two voices? Swap **ZONOS3 Voice** for **ZONOS3 Voice Blend**."
+    "## Design a Voice \u2014 ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. Pick a base voice in **ZONOS3 Voice**, or try a **preset** in Voice Design.\n3. Move the sliders: **Who** (gender, age, pitch, intonation), **Texture**, **Room**, **Delivery** and **Mood**. They stop where Zyphra measured the voice still sounds like the same person.\n4. Press **Run**.\n\n**Tips**\n- Mood and delivery are a nudge, not a guarantee: try two or three seeds.\n- Go easy when stacking Delivery and Mood: Liveliness, Happy and Chatty together raise the pitch a lot, so a deep voice can end up sounding like someone else.\n- *steer_hold* relaxes mood and delivery after ~4 seconds so long reads don't drift louder. Set 1 to keep them constant.\n- Want a cross between two voices? Swap **ZONOS3 Voice** for **ZONOS3 Voice Blend**."
    ]
   },
   {
@@ -53,7 +53,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3Server"
+    "Node name for S&R": "ZONOS3Server",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "http://127.0.0.1:1919",
@@ -61,7 +62,8 @@
     "",
     "gpu",
     600,
-    ""
+    "",
+    true
    ]
   },
   {
@@ -102,7 +104,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3Voice"
+    "Node name for S&R": "ZONOS3Voice",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "Thaddeus (English, male, announcer)",
@@ -135,7 +138,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3VoiceDesign"
+    "Node name for S&R": "ZONOS3VoiceDesign",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "none",
@@ -212,7 +216,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3TextToSpeech"
+    "Node name for S&R": "ZONOS3TextToSpeech",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "Welcome back! Today we're making a brand new voice from scratch: no recording, no studio, just a few sliders.",

@@ -1,5 +1,5 @@
 {
- "id": "abfd18de-8065-44c4-9a78-34c1641c24ad",
+ "id": "6cdb0f19-a87f-45a5-8302-3b0016c3fc38",
  "revision": 0,
  "last_node_id": 6,
  "last_link_id": 5,
@@ -23,7 +23,7 @@
    "title": "How to use",
    "properties": {},
    "widgets_values": [
-    "## Clone Your Voice \u2014 ZONOS3-Mini\n\n1. **First time:** set `zonos3_folder` on **ZONOS3 Server** to the folder with `zonos3-server.exe`, and `model_folder` to the folder with `backbone-ptq.gguf`. The server then starts by itself. Already running it yourself? Leave both empty.\n2. In **Load Audio**, upload 10\u201330 seconds of your own voice: one speaker, no music, little background noise.\n3. Type your script in **ZONOS3 Text to Speech** and pick its language.\n4. Press **Run**. The result plays and is saved under `output/audio/ZONOS3`.\n\n**Tips**\n- Same seed = same take. Change the seed for another take.\n- *Voice profile* is steadier; *raw clip* can sound closer to the original.\n- Only clone your own voice, or a voice you have written permission to use."
+    "## Clone Your Voice \u2014 ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. In **Load Audio**, upload 10\u201330 seconds of your own voice: one speaker, no music, little background noise.\n3. Type your script in **ZONOS3 Text to Speech** and pick its language.\n4. Press **Run**. The result plays and is saved under `output/audio/ZONOS3`.\n\n**Tips**\n- Same seed = same take. Change the seed for another take.\n- *Voice profile* is steadier; *raw clip* can sound closer to the original.\n- Only clone your own voice, or a voice you have written permission to use."
    ]
   },
   {
@@ -53,7 +53,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3Server"
+    "Node name for S&R": "ZONOS3Server",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "http://127.0.0.1:1919",
@@ -61,7 +62,8 @@
     "",
     "gpu",
     600,
-    ""
+    "",
+    true
    ]
   },
   {
@@ -136,7 +138,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3Voice"
+    "Node name for S&R": "ZONOS3Voice",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "Clone from audio",
@@ -186,7 +189,8 @@
     }
    ],
    "properties": {
-    "Node name for S&R": "ZONOS3TextToSpeech"
+    "Node name for S&R": "ZONOS3TextToSpeech",
+    "aux_id": "claudianeodev/ComfyUI-ZONOS3"
    },
    "widgets_values": [
     "Hi, it's me. Well, it's my voice: this was made on my own computer, from a short clip, in a few seconds.",

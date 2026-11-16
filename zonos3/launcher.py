@@ -16,6 +16,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .client import Zonos3Client, Zonos3Error
+from . import installer
 
 DATA = Path(__file__).parent / "data"
 _procs: dict[str, subprocess.Popen] = {}
@@ -24,6 +25,7 @@ EXE = "zonos3-server.exe" if os.name == "nt" else "zonos3-server"
 # Where the server binary lands: an extracted release (next to start-zonos3.*), or a source checkout built with CMake
 # (servers/ggml/build-cuda for -DGGML_CUDA=ON, servers/ggml/build otherwise; MSVC adds bin/Release).
 _EXE_CANDIDATES = [
+    "server",
     ".",
     "bin",
     "servers/ggml/build-cuda/bin/Release",
@@ -70,7 +72,8 @@ def find_voices_dir(root: Path, models: Path) -> Path | None:
 def laci_args(root: Path) -> list[str]:
     """--laci-heads for every server language (the default *_heads.json, overridden per speech code), as serve.sh does."""
     heads = None
-    for c in (root / "laci_heads", root / "assets" / "laci_heads"):
+    for c in (root / "server" / "assets" / "laci_heads", root / "server" / "laci_heads", root / "laci_heads",
+              root / "assets" / "laci_heads"):
         if (c / "zonos3_mini_heads.json").is_file():
             heads = c
             break
@@ -90,7 +93,7 @@ def find_ffmpeg(root: Path, models: Path) -> str | None:
     if os.environ.get("ZONOS3_FFMPEG"):
         return os.environ["ZONOS3_FFMPEG"]
     name = "ffmpeg.exe" if os.name == "nt" else "ffmpeg"
-    for c in (models / "bin" / name, root / name, root / "bin" / name):
+    for c in (root / "server" / name, models / "bin" / name, root / name, root / "bin" / name):
         if c.is_file():
             return str(c)
     found = shutil.which("ffmpeg")
@@ -142,15 +145,20 @@ def build_command(root: Path, model_dir: str, url: str, device: str, max_frames:
 
 
 def ensure_server(url: str, root: str, model_dir: str, device: str, max_frames: int, token: str,
-                  startup_timeout: float = 300.0) -> Zonos3Client:
+                  auto_setup: bool = True, startup_timeout: float = 300.0) -> Zonos3Client:
     client = Zonos3Client(url, token)
     if client.healthy():
         return client
     if not root.strip():
-        raise Zonos3Error(
-            f"No ZONOS3 server is answering at {url}. Start it (start-zonos3.bat), or set zonos3_folder on the "
-            "ZONOS3 Server node so it starts itself."
-        )
+        if not auto_setup:
+            raise Zonos3Error(
+                f"No ZONOS3 server is answering at {url}. Start it yourself, set zonos3_folder, or turn on "
+                "auto_setup on the ZONOS3 Server node."
+            )
+        root = str(installer.default_root())
+    rp = Path(root.strip().strip('"'))
+    if auto_setup and (find_server_exe(rp) is None or find_model_dir(rp, model_dir.strip().strip('"')) is None):
+        installer.install(rp)  # first run: fetch the portable server and the model into this folder
     proc = _procs.get(url)
     if proc is None or proc.poll() is not None:
         cmd, env, models = build_command(Path(root.strip().strip('"')), model_dir.strip().strip('"'), url, device,
@@ -172,6 +180,25 @@ def ensure_server(url: str, root: str, model_dir: str, device: str, max_frames: 
             return client
         time.sleep(0.5)
     raise Zonos3Error(f"The ZONOS3 server did not answer at {url} within {int(startup_timeout)} s.")
+
+
+def restart_server(url: str, root: str, model_dir: str, device: str, max_frames: int, token: str) -> Zonos3Client:
+    """Restart a server this node pack started, so it picks up newly downloaded model files."""
+    proc = _procs.get(url)
+    if proc is None or proc.poll() is not None:
+        if Zonos3Client(url, token).healthy():
+            raise Zonos3Error(
+                f"The ZONOS3 server at {url} wasn't started by this ComfyUI session, so it can't be restarted with "
+                "the raw-clip encoders. Restart ComfyUI (or that server) and press Run again."
+            )
+    else:
+        proc.terminate()
+        try:
+            proc.wait(timeout=30)
+        except Exception:
+            proc.kill()
+        _procs.pop(url, None)
+    return ensure_server(url, root, model_dir, device, max_frames, token, auto_setup=False)
 
 
 def _tail(path, n: int = 25) -> str:

@@ -1,0 +1,26 @@
+{
+  "pack_version": "1.2.0",
+  "model_repo": "Zyphra/ZONOS3-Mini",
+  "model_revision": "main",
+  "model_files": [
+    "gguf/backbone-ptq.gguf",
+    "gguf/zac-keep2.gguf",
+    "gguf/spk-encoder.gguf",
+    "gguf/steer.gguf"
+  ],
+  "voices_dir": "gguf/voices",
+  "server": {
+    "win-cuda": {
+      "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/download/server-v1/zonos3-server-win-cuda.zip",
+      "sha256": "bcb2e0989b97a7404db7ec77cbba6e7734ba1e22d317b4e983a6c2d32e72a019",
+      "size": 792350118,
+      "zonos3_commit": "96d9e0ec1e39083ed336ac78f24e3dbc93721c0f",
+      "cuda": "12.8.1",
+      "archs": "sm_75-sm_120"
+    }
+  },
+  "reference_files": [
+    "gguf/zac-encoder.gguf",
+    "gguf/ssl-teacher.gguf"
+  ]
+}
