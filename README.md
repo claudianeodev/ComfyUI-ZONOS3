@@ -40,7 +40,7 @@ cd ComfyUI/custom_nodes
 git clone https://github.com/claudianeodev/ComfyUI-ZONOS3.git
 ```
 
-or drop the single file [`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/download/server-v1/zonos3_comfyui.py)
+or drop the single file [`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/main/dist/zonos3_comfyui.py)
 into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
 
 ### What the first Run does (Windows + NVIDIA)
@@ -48,9 +48,9 @@ into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and 
 With `auto_setup` on (the default), the **ZONOS3 Server** node sets itself up in `ComfyUI/models/zonos3`, one folder you
 can delete to remove everything:
 
-1. downloads the prebuilt ZONOS3 server for Windows (about 790 MB, from this repo's
-   [server-v1 release](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/tag/server-v1); CUDA 12.8, RTX 20
-   to 50 series, ffmpeg included) and checks its SHA-256;
+1. downloads the prebuilt ZONOS3 server for Windows (about 790 MB, in 9 parts from this repo's
+   [server-v1-parts](https://github.com/claudianeodev/ComfyUI-ZONOS3/tree/server-v1-parts) branch; CUDA 12.8, RTX 20
+   to 50 series, ffmpeg included), joins them and checks the SHA-256;
 2. downloads the model and the 27 voices from [Zyphra/ZONOS3-Mini](https://huggingface.co/Zyphra/ZONOS3-Mini)
    (about 1.2 GB);
 3. starts the server and keeps it running while ComfyUI is open. The log is `models/zonos3/gguf/zonos3-server.log`.

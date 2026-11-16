@@ -16,7 +16,54 @@
       "size": 792350118,
       "zonos3_commit": "96d9e0ec1e39083ed336ac78f24e3dbc93721c0f",
       "cuda": "12.8.1",
-      "archs": "sm_75-sm_120"
+      "archs": "sm_75-sm_120",
+      "parts": [
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.001",
+          "size": 95000000,
+          "sha256": "b88e6bc30b44d7d39963282c2cca256b5ee36fe37b7e404320d6676943b828a1"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.002",
+          "size": 95000000,
+          "sha256": "f9754e2c25b15d52866df5443ba3f808809453ea87bc17692b5b2ba49d8d5399"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.003",
+          "size": 95000000,
+          "sha256": "1d817b9d27946cbec28623129fe84afcb57e1dc52505705395a05b59787dfe22"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.004",
+          "size": 95000000,
+          "sha256": "52f52f804d8482452693f44b8bd2f6fa759071348c985c3a418fb0f5d645368c"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.005",
+          "size": 95000000,
+          "sha256": "cd3c3689786981f00b2d4afe15c12acae672a38e9a240065f2c9339160738d49"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.006",
+          "size": 95000000,
+          "sha256": "bba1a34892ecdd8c4ea14deae71a22862b5546008a43582dbfbff07e9a73ea3f"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.007",
+          "size": 95000000,
+          "sha256": "01d5ecaf0f52b4511c6bde896fb63c8874d03a15a28c5f3f9318304aa477a52b"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.008",
+          "size": 95000000,
+          "sha256": "58cbfa898b34f940cacaaec07f53b0f10497eba80c25873c491fe66c2320923f"
+        },
+        {
+          "url": "https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/server-v1-parts/zonos3-server-win-cuda.zip.009",
+          "size": 32350118,
+          "sha256": "d0bfe38c49cd2e32ecc3dcd6881d62ee03614b60b75fb4c2db71deb3de9badcb"
+        }
+      ]
     }
   },
   "reference_files": [

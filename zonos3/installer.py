@@ -81,6 +81,33 @@ def _download(url: str, dest: Path, sha256: str | None = None, size: int | None 
     os.replace(part, dest)
 
 
+def _download_parts(parts: list[dict], dest: Path, sha256: str, size: int, label: str, bar=None) -> None:
+    """Download a file published as several parts (each checked), join them and check the whole file."""
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    pieces = []
+    for i, p in enumerate(parts, 1):
+        piece = dest.with_name(f"{dest.name}.{i:03d}")
+        if not (piece.is_file() and piece.stat().st_size == p["size"]):
+            _download(p["url"], piece, p.get("sha256"), p["size"], f"{label} part {i}/{len(parts)}", bar)
+        elif bar is not None:
+            bar.update(p["size"])
+        pieces.append(piece)
+    h = hashlib.sha256()
+    tmp = dest.with_name(dest.name + ".part")
+    with open(tmp, "wb") as out:
+        for piece in pieces:
+            with open(piece, "rb") as f:
+                for chunk in iter(lambda: f.read(1 << 22), b""):
+                    out.write(chunk)
+                    h.update(chunk)
+    if tmp.stat().st_size != size or h.hexdigest().lower() != sha256.lower():
+        tmp.unlink(missing_ok=True)
+        raise Zonos3Error(f"The joined {label} failed its checksum. Press Run again.")
+    os.replace(tmp, dest)
+    for piece in pieces:
+        piece.unlink(missing_ok=True)
+
+
 def _hf_tree(path: str) -> list[dict]:
     url = f"https://huggingface.co/api/models/{HF_REPO}/tree/{HF_REVISION}/{path}?recursive=true"
     try:
@@ -170,6 +197,8 @@ def install(root: Path) -> None:
                 raise Zonos3Error("The local server package doesn't match the expected checksum.")
             if bar is not None:
                 bar.update(pkg["size"])
+        elif pkg.get("parts") and "ZONOS3_SERVER_PACKAGE_URL" not in os.environ:
+            _download_parts(pkg["parts"], zpath, pkg["sha256"], pkg["size"], "ZONOS3 server", bar)
         else:
             _download(url, zpath, pkg["sha256"], pkg["size"], "ZONOS3 server", bar)
         tmp = root / "server.new"
