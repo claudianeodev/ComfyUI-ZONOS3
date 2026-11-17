@@ -184,23 +184,10 @@ def install(root: Path) -> None:
 
     if any(k == "server" for k, _ in jobs):
         zpath = root / "downloads" / "zonos3-server.zip"
-        url = os.environ.get("ZONOS3_SERVER_PACKAGE_URL", pkg["url"])
-        local = Path(url.removeprefix("file:"))
-        if url.startswith("file:") or local.is_file():  # for testing a package before it's uploaded
-            zpath.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(local, zpath)
-            h = hashlib.sha256()
-            with open(zpath, "rb") as f:
-                for chunk in iter(lambda: f.read(1 << 22), b""):
-                    h.update(chunk)
-            if h.hexdigest() != pkg["sha256"]:
-                raise Zonos3Error("The local server package doesn't match the expected checksum.")
-            if bar is not None:
-                bar.update(pkg["size"])
-        elif pkg.get("parts") and "ZONOS3_SERVER_PACKAGE_URL" not in os.environ:
+        if pkg.get("parts"):
             _download_parts(pkg["parts"], zpath, pkg["sha256"], pkg["size"], "ZONOS3 server", bar)
         else:
-            _download(url, zpath, pkg["sha256"], pkg["size"], "ZONOS3 server", bar)
+            _download(pkg["url"], zpath, pkg["sha256"], pkg["size"], "ZONOS3 server", bar)
         tmp = root / "server.new"
         shutil.rmtree(tmp, ignore_errors=True)
         with zipfile.ZipFile(zpath) as z:

@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-zonos3"
 description = "Zyphra's ZONOS3-Mini text-to-speech in ComfyUI: clone a voice, design a voice, 43 languages. Runs Zyphra's local server, so it can't break other node packs."
-version = "1.2.1"
+version = "1.2.2"
 license = { file = "LICENSE" }
 dependencies = []
 

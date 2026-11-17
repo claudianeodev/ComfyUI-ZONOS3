@@ -23,7 +23,7 @@
       "title": "How to use",
       "properties": {},
       "widgets_values": [
-        "## Design a Voice \u2014 ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. Pick a base voice in **ZONOS3 Voice**, or try a **preset** in Voice Design.\n3. Move the sliders: **Who** (gender, age, pitch, intonation), **Texture**, **Room**, **Delivery** and **Mood**. They stop where Zyphra measured the voice still sounds like the same person.\n4. Press **Run**.\n\n**Tips**\n- Mood and delivery are a nudge, not a guarantee: try two or three seeds.\n- Go easy when stacking Delivery and Mood: Liveliness, Happy and Chatty together raise the pitch a lot, so a deep voice can end up sounding like someone else.\n- *steer_hold* relaxes mood and delivery after ~4 seconds so long reads don't drift louder. Set 1 to keep them constant.\n- Want a cross between two voices? Swap **ZONOS3 Voice** for **ZONOS3 Voice Blend**."
+        "## Design a Voice — ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. Pick a base voice in **ZONOS3 Voice**, or try a **preset** in Voice Design.\n3. Move the sliders: **Who** (gender, age, pitch, intonation), **Texture**, **Room**, **Delivery** and **Mood**. They stop where Zyphra measured the voice still sounds like the same person.\n4. Press **Run**.\n\n**Tips**\n- Mood and delivery are a nudge, not a guarantee: try two or three seeds.\n- Go easy when stacking Delivery and Mood: Liveliness, Happy and Chatty together raise the pitch a lot, so a deep voice can end up sounding like someone else.\n- *steer_hold* relaxes mood and delivery after ~4 seconds so long reads don't drift louder. Set 1 to keep them constant.\n- Want a cross between two voices? Swap **ZONOS3 Voice** for **ZONOS3 Voice Blend**."
       ]
     },
     {
@@ -238,14 +238,14 @@
     },
     {
       "id": 6,
-      "type": "SaveAudioAdvanced",
+      "type": "SaveAudioMP3",
       "pos": [
         1320,
         0
       ],
       "size": [
         360,
-        140
+        136
       ],
       "flags": {},
       "order": 5,
@@ -265,28 +265,21 @@
           "link": null
         },
         {
-          "name": "format",
-          "type": "COMFY_DYNAMICCOMBO_V3",
+          "name": "quality",
+          "type": "COMBO",
           "widget": {
-            "name": "format"
+            "name": "quality"
           },
           "link": null
         }
       ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [],
-          "slot_index": 0
-        }
-      ],
+      "outputs": [],
       "properties": {
-        "Node name for S&R": "SaveAudioAdvanced"
+        "Node name for S&R": "SaveAudioMP3"
       },
       "widgets_values": [
         "audio/ZONOS3/design",
-        "flac"
+        "320k"
       ]
     }
   ],

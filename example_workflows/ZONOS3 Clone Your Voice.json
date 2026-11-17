@@ -23,7 +23,7 @@
       "title": "How to use",
       "properties": {},
       "widgets_values": [
-        "## Clone Your Voice \u2014 ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. In **Load Audio**, upload 10\u201330 seconds of your own voice: one speaker, no music, little background noise.\n3. Type your script in **ZONOS3 Text to Speech** and pick its language.\n4. Press **Run**. The result plays and is saved under `output/audio/ZONOS3`.\n\n**Tips**\n- Same seed = same take. Change the seed for another take.\n- *Voice profile* is steadier; *raw clip* can sound closer to the original.\n- Only clone your own voice, or a voice you have written permission to use."
+        "## Clone Your Voice — ZONOS3-Mini\n\n1. **First run:** just press Run. ZONOS3 downloads its voice server and model (about 1.7 GB, once) into `ComfyUI/models/zonos3` and starts by itself. Windows with an NVIDIA GPU.\n2. In **Load Audio**, upload 10–30 seconds of your own voice: one speaker, no music, little background noise.\n3. Type your script in **ZONOS3 Text to Speech** and pick its language.\n4. Press **Run**. The result plays and is saved under `output/audio/ZONOS3`.\n\n**Tips**\n- Same seed = same take. Change the seed for another take.\n- *Voice profile* is steadier; *raw clip* can sound closer to the original.\n- Only clone your own voice, or a voice you have written permission to use."
       ]
     },
     {
@@ -209,14 +209,14 @@
     },
     {
       "id": 6,
-      "type": "SaveAudioAdvanced",
+      "type": "SaveAudioMP3",
       "pos": [
         1320,
         0
       ],
       "size": [
         360,
-        140
+        136
       ],
       "flags": {},
       "order": 5,
@@ -236,28 +236,21 @@
           "link": null
         },
         {
-          "name": "format",
-          "type": "COMFY_DYNAMICCOMBO_V3",
+          "name": "quality",
+          "type": "COMBO",
           "widget": {
-            "name": "format"
+            "name": "quality"
           },
           "link": null
         }
       ],
-      "outputs": [
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [],
-          "slot_index": 0
-        }
-      ],
+      "outputs": [],
       "properties": {
-        "Node name for S&R": "SaveAudioAdvanced"
+        "Node name for S&R": "SaveAudioMP3"
       },
       "widgets_values": [
         "audio/ZONOS3/clone",
-        "flac"
+        "320k"
       ]
     }
   ],

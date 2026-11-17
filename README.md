@@ -40,8 +40,8 @@ cd ComfyUI/custom_nodes
 git clone https://github.com/claudianeodev/ComfyUI-ZONOS3.git
 ```
 
-or drop the single file [`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/main/dist/zonos3_comfyui.py)
-into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
+or install **ComfyUI-ZONOS3** from ComfyUI-Manager (Comfy Registry), or drop the single file
+[`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/latest/download/zonos3_comfyui.py) from the latest release into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
 
 ### What the first Run does (Windows + NVIDIA)
 
