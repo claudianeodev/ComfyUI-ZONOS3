@@ -11,6 +11,6 @@ Documentation = "https://claudianeodev.github.io/ComfyUI-ZONOS3/"
 Repository = "https://github.com/claudianeodev/ComfyUI-ZONOS3"
 
 [tool.comfy]
-PublisherId = "promptus"
+PublisherId = "claudiadev"
 DisplayName = "ComfyUI-ZONOS3"
 Icon = "https://raw.githubusercontent.com/claudianeodev/ComfyUI-ZONOS3/main/icon.png"
