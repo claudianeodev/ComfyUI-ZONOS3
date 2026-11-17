@@ -41,7 +41,7 @@ git clone https://github.com/claudianeodev/ComfyUI-ZONOS3.git
 ```
 
 or install **ComfyUI-ZONOS3** from ComfyUI-Manager (Comfy Registry), or drop the single file
-[`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/releases/latest/download/zonos3_comfyui.py) from the latest release into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
+[`zonos3_comfyui.py`](https://github.com/claudianeodev/ComfyUI-ZONOS3/raw/single-file/zonos3_comfyui.py) (single-file branch) into `ComfyUI/custom_nodes`. Restart ComfyUI, load one of the two templates and press Run.
 
 ### What the first Run does (Windows + NVIDIA)
 
